@@ -8,6 +8,7 @@ import com.itmayiedu.test01.dao.service.UserServiceTest01;
 import com.itmayiedu.test02.dao.UserMapperTest02;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,13 +26,15 @@ public class IndexController {
     private UserMapperTest02 userMapperTest02;
     @Autowired
     private UserServiceTest01 userServiceTest01;
+    @Value("${itmayiedu}")
+    public String itmayiedu;
     @RequestMapping("/index")
     public String index(Integer id) {
         User findUser = userDao.findOne(id);
         System.out.println(findUser.getName());
         return "success";
     }
-
+    @ResponseBody
     @RequestMapping("/insertTest001")
     public String insertTest001(String name, Integer age) {
         userServiceTest01.insertTest001(name,age);
@@ -48,4 +51,19 @@ public class IndexController {
         userMapperTest02.insert(name,age);
         return "success";
     }
+    @ResponseBody
+    @RequestMapping("/semdMsg")
+    public  String sendMsg() {
+        System.out.println("#######semdMsg#####1");
+        userServiceTest01.semdSms();
+        System.out.println("#######semdMsg#####2");
+        return "success";
+    }
+    @ResponseBody
+    @RequestMapping("/getValue")
+    public  String  getValue(){
+        return itmayiedu;
+
+    }
+
 }

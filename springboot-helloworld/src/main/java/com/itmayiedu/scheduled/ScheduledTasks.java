@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @date 2019/3/13 0013 17:30
  */
 /*注入到容器中*/
-@Component
+//@Component
 public class ScheduledTasks {
 @Scheduled(fixedRate =1000 )
     public void  test(){

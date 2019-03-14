@@ -4,6 +4,7 @@ import com.itmayiedu.test01.dao.UserMapperTest01;
 import com.itmayiedu.test02.dao.UserMapperTest02;
 import com.itmayiedu.test02.dao.service.UserServiceTest02;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -28,4 +29,16 @@ public class UserServiceTest01 {
         userMapperTest02.insert(name,age);
         return "success";
     }
+
+    //异步调用
+    @Async
+    public String semdSms(){
+        System.out.println("####semdSms#####3");
+        for (int i = 1; i <=3; i++) {
+            System.out.println("i+"+i);
+        }
+        System.out.println("####semdSms#####4");
+        return "success";
+    }
+
 }
